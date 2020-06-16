@@ -96,7 +96,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     var fileContentFromURL = await fetch(uriFromURL)
         .then((response) => response.text());
 
-    //#endregion
+    //#endregion CRD One File Using The File Storage using URL
 
     //#region CRD One File Using The File Storage With IsSync = true
     //Get the current (before) files from the File Storage
@@ -239,7 +239,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
             expect(inItUpdatedFileObjectBase64.MimeType).to.be.equal("text/plain");
             expect(inItUpdatedFileObjectBase64.ModificationDate).to.contain(new Date().toISOString().split("T")[0]);
             expect(inItUpdatedFileObjectBase64.Title).to.be.equal(updatedFileObjectBase64["Title"]);
-            expect(inItUpdatedFileObjectBase64.URL).to.be.contain(updatedFileObjectBase64NewUrl);
+            expect(inItUpdatedFileObjectBase64.URL).to.be.contain(updateduriFromBase64);
         });
 
         it('Read the updated file content', () => {
