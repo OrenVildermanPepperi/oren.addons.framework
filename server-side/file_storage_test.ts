@@ -68,7 +68,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     var updatedFileContentFromBase64 = await fetch(updateduriFromBase64)
         .then((response) => response.text());
 
-    //#endregion
+    //#endregion CRUD One File Using The File Storage in Base64
 
     //#region CRD One File Using The File Storage using URL
     //Get the current (before) files from the File Storage
@@ -125,7 +125,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     var fileContentFromIsSync = await fetch(uriFromIsSync)
         .then((response) => response.text());
 
-    //#endregion
+    //#endregion CRD One File Using The File Storage using URL
 
     //#region Make sure file uploaded via Base64 when using both Base64 and URL
     //Get the current (before) files from the File Storage
@@ -137,6 +137,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     let testDataFileURLAndBase64Body = await service.createNewTextFileFromBase64(testDataFileNameFromURLAndBase64, testDataFileNameFromURLAndBase64);
     testDataFileURLAndBase64Body["URL"] = testDataFileURLAndBase64;
     await service.postFilesToStorage(testDataFileURLAndBase64Body);
+
     //Get the current (after) files from the File Storage
     let allfilesAfterURLAndBase64 = await service.getFilesFromStorage();
 
@@ -154,9 +155,9 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     var fileContentFromURLAndBase64 = await fetch(uriFromURLAndBase64)
         .then((response) => response.text());
 
-    //#endregion
+    //#endregion Make sure file uploaded via Base64 when using both Base64 and URL
 
-    //#region Mandatory Title test (negative).
+    //#region Mandatory Title test (negative)
     //Get the current (before) files from the File Storage
     let allfilesBeforeAddNonTitle = await service.getFilesFromStorage();
 
@@ -167,12 +168,13 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     tempBodyNonTitle["Content"] = testDataFileNonTitle.Content;
     tempBodyNonTitle["FileName"] = testDataFileNonTitle.FileName;
     let postWithoutTitleResponse = await service.postFilesToStorage(tempBodyNonTitle);
+
     //Get the current (after) files from the File Storage
     let allfilesAfterNonTitle = await service.getFilesFromStorage();
 
-    //#endregion
+    //#endregion Mandatory Title test (negative).
 
-    //#region Mandatory FileName test (negative).
+    //#region Mandatory FileName test (negative)
     //Get the current (before) files from the File Storage
     let allfilesBeforeAddNonFileName = await service.getFilesFromStorage();
 
@@ -183,10 +185,11 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
     tempBodyNonFileName["Content"] = testDataFileNonFileName.Content;
     tempBodyNonFileName["Title"] = testDataFileNonFileName.Title;
     let postWithoutFileNameResponse = await service.postFilesToStorage(tempBodyNonFileName);
+
     //Get the current (after) files from the File Storage
     let allfilesAfterNonFileName = await service.getFilesFromStorage();
 
-    //#endregion
+    //#endregion Mandatory FileName test (negative).
 
     //#endregion Prerequisites
 
@@ -217,6 +220,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
         });
 
         let inItUpdatedFileObjectBase64;
+
         it('Update the new added file', () => {
             for (let index = 0; index < allfilesAfterBase64Update.length; index++) {
                 if (allfilesAfterBase64Update[index].InternalID == fileObjectBase64.InternalID) {
@@ -453,6 +457,7 @@ async function TestCleanUp(Client: Client) {
     }
 }
 
+//TODO: remoave this old functions when they won't be needed
 //#region Original experimental function
 export async function failTest(Client, Request) {
     var Success = false;
