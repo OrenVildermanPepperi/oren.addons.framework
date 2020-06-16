@@ -224,10 +224,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
                     break;
                 }
             }
-            it('Update the new added file2', () => {
-
-                expect(Number(inItUpdatedFileObjectBase64.InternalID) == fileObjectBase64.InternalID);
-            });
+            expect(Number(inItUpdatedFileObjectBase64.InternalID) == fileObjectBase64.InternalID);
             expect(inItUpdatedFileObjectBase64.Configuration).to.be.null;
             expect(inItUpdatedFileObjectBase64.Content).to.be.null;
             expect(inItUpdatedFileObjectBase64.CreationDate).to.contain(new Date().toISOString().split("T")[0]);
@@ -238,11 +235,7 @@ export async function CRUDOneFileFromFileStorageTest(Client: Client, Request: Re
             expect(inItUpdatedFileObjectBase64.MimeType).to.be.equal("text/plain");
             expect(inItUpdatedFileObjectBase64.ModificationDate).to.contain(new Date().toISOString().split("T")[0]);
             expect(inItUpdatedFileObjectBase64.Title).to.be.equal(updatedFileObjectBase64["Title"]);
-            it('Update the new added file20', () => {
-
-                expect(inItUpdatedFileObjectBase64.URL).to.be.contain(updatedFileObjectBase64NewUrl);
-            });
-
+            expect(inItUpdatedFileObjectBase64.URL).to.be.contain(updatedFileObjectBase64NewUrl);
         });
 
         it('Read the updated file content', () => {
